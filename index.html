@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Be My Girlfriend?</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #ff9a9e, #fecfef);
+      color: #333;
+      text-align: center;
+      padding: 50px;
+      margin: 0;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+    p {
+      font-size: 1.5em;
+      margin-bottom: 40px;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    button {
+      font-size: 1.2em;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    #yes {
+      background: #4CAF50;
+      color: white;
+    }
+    #yes:hover {
+      background: #45a049;
+      transform: scale(1.1);
+    }
+    #no {
+      background: #f44336;
+      color: white;
+      position: relative;
+    }
+    .hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .heart {
+      position: absolute;
+      color: #ff6b9d;
+      font-size: 2em;
+      animation: float 3s linear infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+    #response {
+      font-size: 2em;
+      margin-top: 20px;
+      display: none;
+      color: #4CAF50;
+    }
+    #herPhoto  {
+  display: none;
+  position: fixed;
+  bottom: 20px;              /* moves photo to bottom */
+  left: 50%;                 /* centers it horizontally */
+  transform: translateX(-50%);
+  width: 200px;              /* smaller size */
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255, 105, 180, 0.7);
+  border: 4px solid white;
+  z-index: 999;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -48%) scale(0.95); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+  </style>
+</head>
+<body>
+  <div class="hearts" id="hearts"></div>
+  <h1>Will You Be My ....Permanent ATM? (Always There for Money 😜)?</h1>
+  <p>Hey Anamika, I’ve been wanting to ask you this for a while. You’re amazing, and I can’t imagine my life without you. What do you say?</p>
+  <div class="buttons">
+    <button id="yes">Yes! 💕</button>
+    <button id="no">No</button>
+  </div>
+
+  <div id="response"></div>
+  <img id="herPhoto" src="C:\Users\User\Downloads\anamika.jpg.jpeg" alt="Her Photo">
+
+  <script>
+    const yesBtn = document.getElementById('yes');
+    const noBtn = document.getElementById('no');
+    const response = document.getElementById('response');
+    const heartsContainer = document.getElementById('hearts');
+    const herPhoto = document.getElementById('herPhoto');
+
+    // Make No button run away 😆
+    noBtn.addEventListener('mouseover', () => {
+      const x = Math.random() * window.innerWidth * 0.8;
+      const y = Math.random() * window.innerHeight * 0.8;
+      noBtn.style.position = 'absolute';
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    });
+
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDelay = Math.random() * 3 + 's';
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
+    }
+    setInterval(createHeart, 500);
+
+    // When she clicks "Yes"
+    yesBtn.addEventListener('click', () => {
+      response.innerHTML = "💖  Can you be my permanent ATM?,I i’ll remember you whenever i am need , (BTW-I always need money , Because money is honey)  💖<br>Don’t worry, why fear when Bunu is here 😘";
+      response.style.display = 'block';
+      herPhoto.style.display = 'block'; // show photo
+      function movePhotoRandomly() {
+  const x = Math.random() * (window.innerWidth - 200);
+  const y = Math.random() * (window.innerHeight - 200);
+  herPhoto.style.transition = 'all 2.5s ease-in-out';
+  herPhoto.style.left = `${x}px`;
+  herPhoto.style.top = `${y}px`;
+}
+
+// Trigger photo movement every few seconds
+setInterval(() => {
+  if (herPhoto.style.display === 'block') {
+    movePhotoRandomly();
+  }
+}, 2500);
+    });
+  </script>
+</body>
+</html>
